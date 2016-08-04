@@ -50,7 +50,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Folke Core'
+project = u'Folke.Core'
 copyright = u'2016, Arnaud Castaner, Sidoine de Wispelaere'
 author = u'Arnaud Castaner, Sidoine de Wispelaere'
 

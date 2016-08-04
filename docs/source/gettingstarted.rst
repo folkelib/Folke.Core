@@ -1,6 +1,25 @@
 Getting Started
 ===============
 
+Folke.Core is a framework. As such, some design and concept decisions have been made by the developers. For instance, the framework uses `Folke.Elm <http://folkeelm.readthedocs.org/>`_ which is an ORM (Object-Relational Mapping) engine built by the team. It replaces EntityFramework or NHibernate. Folke.Core also uses Folke.Identity and Folke.Identity.Server which are implementations of Microsoft.AspNet.Identity and the accompanying controllers.
+
+If you prefer, you can use each of these components separately (ie: use only Folke.Elm) for your own projects. But if you're going to use Folke.Core and save a lot of time by not re-implementing yourself a lot of code we already handled, you will have to use these modules.
+
+These are the modules and technologies Folke.Core uses:
+
+* Folke.Elm
+* Folke.Identity
+* Folke.Identity.Server
+* Webpack
+* KnockoutJS
+
+The choices that are up to you are the following:
+
+* The database engine
+* The HTML and CSS code (you are free to use any framework you like, such as Bootstrap)
+
+Folke.Core does not support Angular since we use KnockoutJS. We made this choice to keep the framework as light as possible.
+
 project.json
 ^^^^^^^^^^^^^
 
@@ -115,7 +134,7 @@ The part of this code that is relevant to Folke is the ``app.UseFolkeCore()`` bl
 IFolkeConnection
 ````````````````
 
-This object holds the database connection parameters. This is a compoment of Folke.Elm, the ORM the framework uses.
+This object manages the database connection and transactions state. This is a compoment of Folke.Elm, the ORM the framework uses.
 
 IHostingEnvironment
 ```````````````````
@@ -135,4 +154,4 @@ This class is used to manage users like modifying one or creating a new one. The
 ApplicationPartManager
 ``````````````````````
 
-This class is used to easily access the Folke.Identity.Server controllers (such as AuthenticationController) directly from the framework.
+This class is used to easily register the Folke.Identity.Server controllers (such as AuthenticationController) in your application.
