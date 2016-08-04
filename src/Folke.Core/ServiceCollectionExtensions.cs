@@ -27,7 +27,7 @@ namespace Folke.Core
         }
 
         public static IServiceCollection AddFolkeCore(
-            this IServiceCollection serviceCollection, 
+            this IServiceCollection serviceCollection,
             Action<IMvcBuilder> mvcBuilderSetupAction,
             Action<IdentityOptions> identitySetupOptions,
             Action<AuthorizationOptions> authorizationOptions)
