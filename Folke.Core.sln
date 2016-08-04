@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FD329597-84FE-4592-A881-C93CAEF20A5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8E48A835-23CB-4528-AB55-A63859A51726}"
+	ProjectSection(SolutionItems) = preProject
+		.gitlab-ci.yml = .gitlab-ci.yml
+		build.ps1 = build.ps1
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Folke.Core", "src\Folke.Core\Folke.Core.xproj", "{BF381300-69AB-4923-9B7B-F0C8814FBC26}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BF381300-69AB-4923-9B7B-F0C8814FBC26} = {FD329597-84FE-4592-A881-C93CAEF20A5A}
+	EndGlobalSection
+EndGlobal
