@@ -1,6 +1,7 @@
 ﻿using Folke.Core.Entities;
 using Folke.Core.Services;
 using Folke.Core.ViewModels;
+using Folke.Elm;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -11,9 +12,16 @@ namespace Folke.Core
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddFolkeCore(this IServiceCollection serviceCollection, Action<IMvcBuilder> mvcBuilderSetupAction)
+        public static IServiceCollection AddFolkeCore<TDataBaseDriver>(this IServiceCollection serviceCollection, Action<ElmOptions> elmSetupOptions)
+            where TDataBaseDriver: class, IDatabaseDriver
         {
-            return serviceCollection.AddFolkeCore(mvcBuilderSetupAction, options =>
+            return serviceCollection.AddFolkeCore<TDataBaseDriver>(elmSetupOptions, options => { });
+        }
+        
+        public static IServiceCollection AddFolkeCore<TDataBaseDriver>(this IServiceCollection serviceCollection, Action<ElmOptions> elmSetupOptions, Action<IMvcBuilder> mvcBuilderSetupAction)
+             where TDataBaseDriver : class, IDatabaseDriver
+        {
+            return serviceCollection.AddFolkeCore<TDataBaseDriver>(elmSetupOptions, mvcBuilderSetupAction, options =>
             {
                 options.Password = new PasswordOptions
                 {
@@ -26,12 +34,16 @@ namespace Folke.Core
             }, options => { });
         }
 
-        public static IServiceCollection AddFolkeCore(
+        public static IServiceCollection AddFolkeCore<TDataBaseDriver>(
             this IServiceCollection serviceCollection,
+            Action<ElmOptions> elmSetupOptions,
             Action<IMvcBuilder> mvcBuilderSetupAction,
             Action<IdentityOptions> identitySetupOptions,
             Action<AuthorizationOptions> authorizationOptions)
+                where TDataBaseDriver : class, IDatabaseDriver
         {
+            serviceCollection.AddElm<TDataBaseDriver>(elmSetupOptions);
+
             serviceCollection.AddIdentity<User, Role>(identitySetupOptions).AddDefaultTokenProviders();
             var mvcBuilder = serviceCollection.AddMvc().AddFolkeCore();
             mvcBuilderSetupAction(mvcBuilder);
