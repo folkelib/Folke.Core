@@ -79,7 +79,7 @@ namespace Folke.Core
             applicationPartManager.PopulateFeature(feature);
             var controllerTypes = feature.Controllers.Select(c => c.AsType());
             var converter = new Converter();
-            var assembly = converter.ReadAssemblies(controllerTypes);
+            var assembly = converter.ReadControllers(controllerTypes);
             var typeScript = new TypeScriptWriter();
             typeScript.WriteAssembly(assembly);
             typeScript.WriteToFiles("src/services");
