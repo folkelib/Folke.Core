@@ -78,12 +78,11 @@ namespace Folke.Core
             ControllerFeature feature = new ControllerFeature();
             applicationPartManager.PopulateFeature(feature);
             var controllerTypes = feature.Controllers.Select(c => c.AsType());
-            var converter = new Converter(new WaAdapter());
-            Directory.CreateDirectory("src/services");
-            converter.Write(controllerTypes,
-                "src/services/services.ts",
-                "folke-ko-service-helpers",
-                "folke-ko-validation");
+            var converter = new Converter();
+            var assembly = converter.ReadAssemblies(controllerTypes);
+            var typeScript = new TypeScriptWriter();
+            typeScript.WriteAssembly(assembly);
+            typeScript.WriteToFiles("src/services");
         }
     }
 }

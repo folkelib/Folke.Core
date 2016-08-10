@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Folke.Core", "src\Folke.Core\Folke.Core.xproj", "{BF381300-69AB-4923-9B7B-F0C8814FBC26}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Folke.CsTsService", "..\Folke.CsTsService\src\Folke.CsTsService\Folke.CsTsService.xproj", "{94CA25FD-9EC5-483D-A7ED-5DB0F03D414A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94CA25FD-9EC5-483D-A7ED-5DB0F03D414A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94CA25FD-9EC5-483D-A7ED-5DB0F03D414A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94CA25FD-9EC5-483D-A7ED-5DB0F03D414A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94CA25FD-9EC5-483D-A7ED-5DB0F03D414A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
