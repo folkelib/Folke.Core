@@ -1,6 +1,7 @@
 ﻿{
-  "projects": [ "src", "test", "../Folke.CsTsService/src" ],
-  "sdk": {
-    "version": "1.0.0-preview2-003121"
-  }
+  "projects": [ "src", "test",
+    "../Folke.CsTsService/src",
+    "../Folke.Identity.Server/src",
+    "../Folke.Identity.Elm/src"
+  ]
 }
