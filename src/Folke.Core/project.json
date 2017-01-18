@@ -4,7 +4,7 @@
   "dependencies": {
     "Folke.Identity.Server": "1.4.*",
     "Folke.Identity.Elm": "1.4.*",
-    "Folke.CsTsService": "1.4.*",
+    "Folke.CsTsService": "2.0.*",
     "Microsoft.AspNetCore.StaticFiles": "1.1.0"
   },
 

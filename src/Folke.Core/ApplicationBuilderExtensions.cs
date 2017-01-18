@@ -18,8 +18,8 @@ namespace Folke.Core
     public static class ApplicationBuilderExtensions
     {
         public static IApplicationBuilder UseFolkeCore(
-            this IApplicationBuilder app, 
-            IFolkeConnection connection, 
+            this IApplicationBuilder app,
+            IFolkeConnection connection,
             IHostingEnvironment env,
             RoleManager<Role> roleManager,
             UserManager<User> userManager,
@@ -35,7 +35,7 @@ namespace Folke.Core
             connection.UpdateIdentityUserSchema<int, User>();
             connection.UpdateIdentityRoleSchema<int, User>();
             connection.UpdateSchema(typeof(User).GetTypeInfo().Assembly);
-        
+
             using (var transaction = connection.BeginTransaction())
             {
                 var options = new FolkeCoreOptions();
@@ -81,7 +81,9 @@ namespace Folke.Core
             var converter = new Converter();
             var assembly = converter.ReadControllers(controllerTypes);
             var typeScript = new TypeScriptWriter();
-            typeScript.WriteAssembly(assembly);
+            // Call WriteAssembly twice ; once for TypeScript objects and once for Knockout mappings
+            typeScript.WriteAssembly(assembly, true);
+            typeScript.WriteAssembly(assembly, false);
             typeScript.WriteToFiles("src/services");
         }
     }
