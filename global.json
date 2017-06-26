@@ -1,7 +1,0 @@
-﻿{
-  "projects": [ "src", "test",
-    "../Folke.CsTsService/src",
-    "../Folke.Identity.Server/src",
-    "../Folke.Identity.Elm/src"
-  ]
-}

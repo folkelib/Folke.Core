@@ -12,16 +12,16 @@ namespace Folke.Core
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddFolkeCore<TDataBaseDriver>(this IServiceCollection serviceCollection, Action<ElmOptions> elmSetupOptions)
+        public static IServiceCollection AddFolkeCore<TDataBaseDriver>(this IServiceCollection serviceCollection, Action<FolkeCoreOptions> folkeCoreOptions)
             where TDataBaseDriver: class, IDatabaseDriver
         {
-            return serviceCollection.AddFolkeCore<TDataBaseDriver>(elmSetupOptions, options => { });
+            return serviceCollection.AddFolkeCore<TDataBaseDriver>(folkeCoreOptions, options => { });
         }
         
-        public static IServiceCollection AddFolkeCore<TDataBaseDriver>(this IServiceCollection serviceCollection, Action<ElmOptions> elmSetupOptions, Action<IMvcBuilder> mvcBuilderSetupAction)
+        public static IServiceCollection AddFolkeCore<TDataBaseDriver>(this IServiceCollection serviceCollection, Action<FolkeCoreOptions> folkeCoreOptions, Action<IMvcBuilder> mvcBuilderSetupAction)
              where TDataBaseDriver : class, IDatabaseDriver
         {
-            return serviceCollection.AddFolkeCore<TDataBaseDriver>(elmSetupOptions, mvcBuilderSetupAction, options =>
+            return serviceCollection.AddFolkeCore<TDataBaseDriver>(folkeCoreOptions, mvcBuilderSetupAction, options =>
             {
                 options.Password = new PasswordOptions
                 {
@@ -36,12 +36,15 @@ namespace Folke.Core
 
         public static IServiceCollection AddFolkeCore<TDataBaseDriver>(
             this IServiceCollection serviceCollection,
-            Action<ElmOptions> elmSetupOptions,
+            Action<FolkeCoreOptions> folkeCoreOptions,
             Action<IMvcBuilder> mvcBuilderSetupAction,
-            Action<IdentityOptions> identitySetupOptions,
             Action<AuthorizationOptions> authorizationOptions)
                 where TDataBaseDriver : class, IDatabaseDriver
         {
+            FolkeCoreOptions coreOptions = new FolkeCoreOptions();
+            folkeCoreOptions(coreOptions);
+            
+
             serviceCollection.AddElm<TDataBaseDriver>(elmSetupOptions);
 
             serviceCollection.AddIdentity<User, Role>(identitySetupOptions).AddDefaultTokenProviders();

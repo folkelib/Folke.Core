@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <VersionPrefix>1.4.0</VersionPrefix>
+    <TargetFramework>netstandard1.6</TargetFramework>
+    <AssemblyName>Folke.Core</AssemblyName>
+    <PackageId>Folke.Core</PackageId>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Folke.Identity.Server\src\Folke.Identity.Server\Folke.Identity.Server.csproj" />
+    <ProjectReference Include="..\..\..\Folke.Identity.Elm\src\Folke.Identity.Elm\Folke.Identity.Elm.csproj" />
+    <ProjectReference Include="..\..\..\Folke.CsTsService\src\Folke.CsTsService\Folke.CsTsService.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>
