@@ -11,13 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Folke.Identity.Server\src\Folke.Identity.Server\Folke.Identity.Server.csproj" />
-    <ProjectReference Include="..\..\..\Folke.Identity.Elm\src\Folke.Identity.Elm\Folke.Identity.Elm.csproj" />
-    <ProjectReference Include="..\..\..\Folke.CsTsService\src\Folke.CsTsService\Folke.CsTsService.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Folke.CsTsService" Version="2.0.0.5" />
+    <PackageReference Include="Folke.Identity.Elm" Version="2.0.0" />
+    <PackageReference Include="Folke.Identity.Server" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
   </ItemGroup>
 
 </Project>
