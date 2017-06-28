@@ -9,10 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitlab-ci.yml = .gitlab-ci.yml
 		build.ps1 = build.ps1
-		global.json = global.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Folke.Core", "src\Folke.Core\Folke.Core.csproj", "{BF381300-69AB-4923-9B7B-F0C8814FBC26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Folke.Core.Tests", "test\Folke.Core.Tests\Folke.Core.Tests.csproj", "{364AD5F6-8262-461D-A75F-45445F46C087}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5A9538ED-31F8-44B2-ADC6-E77EE7DA5A5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,11 +27,16 @@ Global
 		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF381300-69AB-4923-9B7B-F0C8814FBC26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{364AD5F6-8262-461D-A75F-45445F46C087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{364AD5F6-8262-461D-A75F-45445F46C087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{364AD5F6-8262-461D-A75F-45445F46C087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{364AD5F6-8262-461D-A75F-45445F46C087}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BF381300-69AB-4923-9B7B-F0C8814FBC26} = {FD329597-84FE-4592-A881-C93CAEF20A5A}
+		{364AD5F6-8262-461D-A75F-45445F46C087} = {5A9538ED-31F8-44B2-ADC6-E77EE7DA5A5E}
 	EndGlobalSection
 EndGlobal

@@ -23,7 +23,7 @@ namespace Folke.Core
             RoleManager<Role> roleManager,
             UserManager<User> userManager,
             ApplicationPartManager applicationPartManager,
-            Action<FolkeCoreOptions> optionsAction)
+            Action<FolkeCoreApplicationOptions> optionsAction)
         {
             app.UseIdentity();
             app.UseDefaultFiles();
@@ -31,13 +31,13 @@ namespace Folke.Core
             app.UseMvc();
             app.UseRequestLocalization();
 
-            connection.UpdateIdentityUserSchema<int, User>();
-            connection.UpdateIdentityRoleSchema<int, User>();
-            connection.UpdateSchema(typeof(User).GetTypeInfo().Assembly);
-
             using (var transaction = connection.BeginTransaction())
             {
-                var options = new FolkeCoreOptions();
+                connection.UpdateIdentityUserSchema<int, User>();
+                connection.UpdateIdentityRoleSchema<int, User>();
+                connection.UpdateSchema(typeof(User).GetTypeInfo().Assembly);
+
+                var options = new FolkeCoreApplicationOptions();
                 optionsAction(options);
                 CreateAdministrator(roleManager, userManager, options).GetAwaiter().GetResult();
                 transaction.Commit();
@@ -51,7 +51,7 @@ namespace Folke.Core
             return app;
         }
 
-        private static async Task CreateAdministrator(RoleManager<Role> roleManager, UserManager<User> userManager, FolkeCoreOptions options)
+        private static async Task CreateAdministrator(RoleManager<Role> roleManager, UserManager<User> userManager, FolkeCoreApplicationOptions applicationOptions)
         {
             var administrateur = await roleManager.FindByNameAsync(RoleNames.Administrator);
             if (administrateur == null)
@@ -62,11 +62,11 @@ namespace Folke.Core
             var users = await userManager.GetUsersInRoleAsync(RoleNames.Administrator);
             if (users.Count == 0)
             {
-                var result = await userManager.CreateAsync(new User { UserName = options.AdministratorEmail, Email = options.AdministratorEmail },
-                        options.AdministratorPassword);
+                var result = await userManager.CreateAsync(new User { UserName = applicationOptions.AdministratorEmail, Email = applicationOptions.AdministratorEmail },
+                        applicationOptions.AdministratorPassword);
                 if (result.Succeeded)
                 {
-                    var user = await userManager.FindByNameAsync(options.AdministratorEmail);
+                    var user = await userManager.FindByNameAsync(applicationOptions.AdministratorEmail);
                     await userManager.AddToRoleAsync(user, RoleNames.Administrator);
                 }
             }
