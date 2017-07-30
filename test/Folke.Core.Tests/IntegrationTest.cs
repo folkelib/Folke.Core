@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Folke.Core.Entities;
 using Folke.Elm;
@@ -10,6 +14,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace Folke.Core.Tests
@@ -17,11 +22,12 @@ namespace Folke.Core.Tests
     public class IntegrationTest
     {
         private readonly HttpClient client;
+        private readonly TestServer server;
 
         public IntegrationTest()
         {
             // Arrange
-            var server = new TestServer(new WebHostBuilder()
+            server = new TestServer(new WebHostBuilder()
                 .UseStartup<SampleStartup>());
             client = server.CreateClient();
         }
@@ -40,13 +46,22 @@ namespace Folke.Core.Tests
                 responseString);
         }
 
+        [Fact]
+        public async Task LoginAsAdminThenCallApiAccountMe_ReturnsLogged()
+        {
+            HttpContent content = new StringContent(JsonConvert.SerializeObject(new { email = "admin@admin.com", password = "mypassword" }), Encoding.UTF8, "application/json");
+            var responseFromLogin = await client.PutAsync("api/authentication/login", content);
+            Assert.Equal(HttpStatusCode.OK, responseFromLogin.StatusCode);
+        }
+
         public class SampleStartup
         {
             public void ConfigureServices(IServiceCollection services)
             {
+                var temp = Path.GetRandomFileName();
                 services.AddFolkeCore<SqliteDriver>(options =>
                 {
-                    options.Elm = elmOptions => elmOptions.ConnectionString = "Data Source=:memory:";
+                    options.Elm = elmOptions => elmOptions.ConnectionString = $"Data Source={temp}.db";
                 });
             }
 
