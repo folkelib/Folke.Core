@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <VersionPrefix>1.4.0</VersionPrefix>
-    <TargetFramework>netstandard1.6</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Folke.Core</AssemblyName>
     <PackageId>Folke.Core</PackageId>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -11,10 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Folke.CsTsService" Version="2.0.0.5" />
-    <PackageReference Include="Folke.Identity.Elm" Version="2.0.0.3" />
-    <PackageReference Include="Folke.Identity.Server" Version="2.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
+    <PackageReference Include="Folke.CsTsService" Version="3.0.0" />
+    <PackageReference Include="Folke.Identity.Elm" Version="3.0.0" />
+    <PackageReference Include="Folke.Identity.Server" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
   </ItemGroup>
 
 </Project>

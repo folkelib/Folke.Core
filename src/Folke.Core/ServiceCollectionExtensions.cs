@@ -4,6 +4,7 @@ using Folke.Core.ViewModels;
 using Folke.Elm;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Microsoft.AspNetCore.Identity;
 
 namespace Folke.Core
 {

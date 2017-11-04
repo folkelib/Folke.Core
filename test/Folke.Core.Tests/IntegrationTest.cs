@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Folke.Core.Entities;
 using Folke.Elm;
 using Folke.Elm.Sqlite;
 using Microsoft.AspNetCore.Builder;
@@ -16,18 +13,18 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Xunit;
+using Folke.Core.Entities;
 
 namespace Folke.Core.Tests
 {
     public class IntegrationTest
     {
         private readonly HttpClient client;
-        private readonly TestServer server;
 
         public IntegrationTest()
         {
             // Arrange
-            server = new TestServer(new WebHostBuilder()
+            var server = new TestServer(new WebHostBuilder()
                 .UseStartup<SampleStartup>());
             client = server.CreateClient();
         }

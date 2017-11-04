@@ -25,7 +25,7 @@ namespace Folke.Core
             ApplicationPartManager applicationPartManager,
             Action<FolkeCoreApplicationOptions> optionsAction)
         {
-            app.UseIdentity();
+            app.UseAuthentication();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseMvc();
