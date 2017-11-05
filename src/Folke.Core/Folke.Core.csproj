@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Folke.CsTsService" Version="3.0.0" />
     <PackageReference Include="Folke.Identity.Elm" Version="3.0.0" />
-    <PackageReference Include="Folke.Identity.Server" Version="3.0.0.1" />
+    <PackageReference Include="Folke.Identity.Server" Version="3.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
   </ItemGroup>
 
