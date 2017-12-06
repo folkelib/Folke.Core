@@ -31,21 +31,22 @@ namespace Folke.Core
             app.UseMvc();
             app.UseRequestLocalization();
 
+            var options = new FolkeCoreApplicationOptions();
+            optionsAction(options);
+
             using (var transaction = connection.BeginTransaction())
             {
                 connection.UpdateIdentityUserSchema<int, User>();
                 connection.UpdateIdentityRoleSchema<int, User>();
                 connection.UpdateSchema(typeof(User).GetTypeInfo().Assembly);
 
-                var options = new FolkeCoreApplicationOptions();
-                optionsAction(options);
                 CreateAdministrator(roleManager, userManager, options).GetAwaiter().GetResult();
                 transaction.Commit();
             }
 
             if (env.IsDevelopment())
             {
-                CreateTypeScriptServices(applicationPartManager);
+                CreateTypeScriptServices(applicationPartManager, options.UseKnockout, options.TypeScriptServicesOutDir ?? "src/services");
             }
 
             return app;
@@ -72,7 +73,7 @@ namespace Folke.Core
             }
         }
 
-        private static void CreateTypeScriptServices(ApplicationPartManager applicationPartManager)
+        private static void CreateTypeScriptServices(ApplicationPartManager applicationPartManager, bool useKnockout, string outputDir)
         {
             ControllerFeature feature = new ControllerFeature();
             applicationPartManager.PopulateFeature(feature);
@@ -81,9 +82,12 @@ namespace Folke.Core
             var assembly = converter.ReadControllers(controllerTypes);
             var typeScript = new TypeScriptWriter();
             // Call WriteAssembly twice ; once for TypeScript objects and once for Knockout mappings
-            typeScript.WriteAssembly(assembly, true);
+            if (useKnockout)
+            {
+                typeScript.WriteAssembly(assembly, true);
+            }
             typeScript.WriteAssembly(assembly, false);
-            typeScript.WriteToFiles("src/services");
+            typeScript.WriteToFiles(outputDir);
         }
     }
 }
