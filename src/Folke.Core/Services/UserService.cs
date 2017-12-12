@@ -14,7 +14,7 @@ namespace Folke.Core.Services
 {
     public class UserService : BaseUserService<User, UserViewModel>
     {
-        private readonly IFolkeConnection connection;
+        protected readonly IFolkeConnection connection;
 
         public UserService(IFolkeConnection connection, IHttpContextAccessor httpContextAccessor, UserManager<User> userManager) : base(httpContextAccessor, userManager)
         {
