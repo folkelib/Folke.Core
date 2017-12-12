@@ -12,7 +12,7 @@ namespace Folke.Core
     public class FolkeCoreOptions
     {
         public Action<AuthorizationOptions> Authorization { get; set; }
-        public Action<ServiceOverrideOptions> IdentityServer { get; set; } = options => { };
+        public Action<IdentityServerOptions> IdentityServer { get; set; } = options => { };
         public Action<ElmOptions> Elm { get; set; } = options => { };
         public Action<IdentityOptions> Identity { get; set; } = options => options.Password = new PasswordOptions
         {
