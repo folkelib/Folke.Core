@@ -12,7 +12,7 @@ namespace Folke.Core
     public class FolkeCoreOptions
     {
         public Action<AuthorizationOptions> Authorization { get; set; }
-        public Action<IdentityServerOptions> IdentityServer { get; set; } = options => { };
+        public Action<ServiceOverrideOptions> IdentityServer { get; set; } = options => { };
         public Action<ElmOptions> Elm { get; set; } = options => { };
         public Action<IdentityOptions> Identity { get; set; } = options => options.Password = new PasswordOptions
         {
@@ -23,5 +23,7 @@ namespace Folke.Core
             RequireUppercase = false
         };
         public Action<IMvcBuilder> MvcBuilder { get; set; }
+        
+        public Action<ServiceOverrideOptions> Overrides { get; set; } = options => { };
     }
 }
