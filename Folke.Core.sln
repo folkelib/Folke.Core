@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Folke.Core", "src\Folke.Core\Folke.Core.csproj", "{BF381300-69AB-4923-9B7B-F0C8814FBC26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Folke.Core.Tests", "test\Folke.Core.Tests\Folke.Core.Tests.csproj", "{364AD5F6-8262-461D-A75F-45445F46C087}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Folke.Core.Tests", "test\Folke.Core.Tests\Folke.Core.Tests.csproj", "{364AD5F6-8262-461D-A75F-45445F46C087}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{5A9538ED-31F8-44B2-ADC6-E77EE7DA5A5E}"
 EndProject
@@ -38,5 +38,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BF381300-69AB-4923-9B7B-F0C8814FBC26} = {FD329597-84FE-4592-A881-C93CAEF20A5A}
 		{364AD5F6-8262-461D-A75F-45445F46C087} = {5A9538ED-31F8-44B2-ADC6-E77EE7DA5A5E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EF73AADE-C9AA-459E-B08E-6FC639C60D2A}
 	EndGlobalSection
 EndGlobal
