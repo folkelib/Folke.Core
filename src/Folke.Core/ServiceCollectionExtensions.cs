@@ -17,14 +17,17 @@ namespace Folke.Core
         {
             var coreServiceOptions = new FolkeCoreOptions();
             optionsAction(coreServiceOptions);
-            
-            serviceCollection.AddElm<TDataBaseDriver>(coreServiceOptions.Elm);
 
-            serviceCollection.AddIdentity<User, Role>(coreServiceOptions.Identity).AddDefaultTokenProviders();
+            var overrides = new ServiceOverrideOptions();
+            coreServiceOptions.Overrides(overrides);
+            
+            if (!overrides.OverrideElm) serviceCollection.AddElm<TDataBaseDriver>(coreServiceOptions.Elm);
+
+            if (!overrides.OverrideIdentity) serviceCollection.AddIdentity<User, Role>(coreServiceOptions.Identity).AddDefaultTokenProviders();
             var mvcBuilder = serviceCollection.AddMvc().AddFolkeCore();
             coreServiceOptions.MvcBuilder?.Invoke(mvcBuilder);
 
-            serviceCollection.AddAuthorization(options =>
+            if (!overrides.OverrideAuthorizations) serviceCollection.AddAuthorization(options =>
             {
                 options.AddPolicy("UserList", policy =>
                 {
@@ -37,9 +40,9 @@ namespace Folke.Core
                 coreServiceOptions.Authorization?.Invoke(options);
             });
 
-            serviceCollection.AddElmIdentity<User, Role, int>();
-            serviceCollection.AddIdentityServer<User, int, EmailService, UserService, UserViewModel>();
-            serviceCollection.AddRoleIdentityServer<Role, RoleService, RoleViewModel>();
+            if (!overrides.OverrideElmIdentity) serviceCollection.AddElmIdentity<User, Role, int>();
+            if (!overrides.OverrideIdentityServer) serviceCollection.AddIdentityServer<User, int, EmailService, UserService, UserViewModel>();
+            if (!overrides.OverrideRoleIdentityServer) serviceCollection.AddRoleIdentityServer<Role, RoleService, RoleViewModel>();
 
             return serviceCollection;
         }

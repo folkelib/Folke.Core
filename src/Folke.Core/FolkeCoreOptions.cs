@@ -23,5 +23,7 @@ namespace Folke.Core
             RequireUppercase = false
         };
         public Action<IMvcBuilder> MvcBuilder { get; set; }
+        
+        public Action<ServiceOverrideOptions> Overrides { get; set; } = options => { };
     }
 }
